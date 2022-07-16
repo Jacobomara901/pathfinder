@@ -11,4 +11,113 @@
 
 .nodeend {
   background: red;
+}
+
+.node-visited {
+  -webkit-animation-name: visitedAnimation;
+          animation-name: visitedAnimation;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+
+@-webkit-keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(0, 0, 66, 0.75);
+    border-radius: 10%;
+  }
+  50% {
+    background-color: peachpuff;
+  }
+  75% {
+    transform: scale(1.2);
+    background-color: peachpuff;
+  }
+  100% {
+    transform: scale(1);
+    background-color: peachpuff;
+  }
+}
+
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(0, 0, 66, 0.75);
+    border-radius: 10%;
+  }
+  50% {
+    background-color: peachpuff;
+  }
+  75% {
+    transform: scale(1.2);
+    background-color: peachpuff;
+  }
+  100% {
+    transform: scale(1);
+    background-color: peachpuff;
+  }
+}
+.node-wall {
+  background-color: rgb(12, 53, 71);
+}
+
+.node-shortest-path {
+  -webkit-animation-name: shortestPath;
+          animation-name: shortestPath;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+
+@-webkit-keyframes shortestPath {
+  0% {
+    transform: scale(0.6);
+    background-color: aquamarine;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: aquamarine;
+  }
+  100% {
+    transform: scale(1);
+    background-color: aquamarine;
+  }
+}
+
+@keyframes shortestPath {
+  0% {
+    transform: scale(0.6);
+    background-color: aquamarine;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: aquamarine;
+  }
+  100% {
+    transform: scale(1);
+    background-color: aquamarine;
+  }
 }/*# sourceMappingURL=Node.css.map */

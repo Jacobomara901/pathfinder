@@ -1,3 +1,7 @@
 .rowWrapper {
   display: flex;
-}/*# sourceMappingURL=pathfind.css.map */
+}
+
+.wrapper {
+  max-width: 80%;
+}/*# sourceMappingURL=Pathfind.css.map */
