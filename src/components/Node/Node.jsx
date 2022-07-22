@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { Component } from "react";
 import './Node.css';
 
-const Node = ({ isStart, isEnd, row, col }) => {
-    const classes = isStart ? 'nodestart' : isEnd ? 'nodeend' : "";
-    return <div className={`node ${classes}`} id={`node-${row}-${col}`}></div>
-};
 
-export default Node;
+export default class Node extends Component {
+    render() {
+        const {
+            col,
+            isEnd,
+            isStart,
+            isWall,
+            row,
+        } = this.props;
+
+        const classes = isStart ? 'nodestart' : isEnd ? 'nodeend' : isWall? "wall": "";
+
+        return (
+            <td className={`node ${classes}`} id={`node-${row}-${col}`}></td>
+        )
+    }
+
+}

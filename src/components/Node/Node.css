@@ -5,6 +5,10 @@
   display: flex;
 }
 
+.wall{
+  background-color: black;
+}
+
 .nodestart {
   background: green;
 }
