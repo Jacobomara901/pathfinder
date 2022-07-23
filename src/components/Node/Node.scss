@@ -6,13 +6,18 @@
 }
 .nodestart{
     background: green;
+ 
 
+}
+.wall{
+  background-color: black;
 }
 .nodeend{
     background: red;
+    
 }
 
-.node-visited {
+.node-visited:not(.nodeend):not(.nodestart) {
     animation-name: visitedAnimation;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
@@ -40,7 +45,7 @@
     }
   
     100% {
-      transform: scale(1);
+      transform: scale(1); 
       background-color: peachpuff;
     }
   }
@@ -49,7 +54,7 @@
     background-color: rgb(12, 53, 71);
   }
   
-  .node-shortest-path {
+  .node-shortest-path:not(.nodeend):not(.nodestart) {
     animation-name: shortestPath;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;

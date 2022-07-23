@@ -37,7 +37,7 @@ function Astar(startNode, endNode){
         for(let i = 0; i < neighbours.length; i++)
         {
             let neighbour = neighbours[i];
-            if (!closedSet.includes(neighbour)){
+            if (!closedSet.includes(neighbour) && !neighbour.isWall){
                 let tempG = current.g + 1;
                 let newPath = false;
                 if(openSet.includes(neighbour)){

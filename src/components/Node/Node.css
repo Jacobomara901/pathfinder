@@ -5,19 +5,19 @@
   display: flex;
 }
 
-.wall{
-  background-color: black;
-}
-
 .nodestart {
   background: green;
+}
+
+.wall {
+  background-color: black;
 }
 
 .nodeend {
   background: red;
 }
 
-.node-visited {
+.node-visited:not(.nodeend):not(.nodestart) {
   -webkit-animation-name: visitedAnimation;
           animation-name: visitedAnimation;
   -webkit-animation-duration: 1.5s;
@@ -77,7 +77,7 @@
   background-color: rgb(12, 53, 71);
 }
 
-.node-shortest-path {
+.node-shortest-path:not(.nodeend):not(.nodestart) {
   -webkit-animation-name: shortestPath;
           animation-name: shortestPath;
   -webkit-animation-duration: 1.5s;
