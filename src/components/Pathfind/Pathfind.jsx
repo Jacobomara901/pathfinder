@@ -15,7 +15,8 @@ const NODE_END_COL = cols - 1;
 const Pathfind = () => {
   const [Grid, setGrid] = useState([]);
   const [Path, setPath] = useState([]);
-  const [VisitedNodes, setVisitedNodes] = useState([])
+  const [VisitedNodes, setVisitedNodes] = useState([]);
+ 
 
 
   useEffect(() => {
@@ -68,6 +69,7 @@ const Pathfind = () => {
         this.y = j;
         this.isStart = this.x === NODE_START_ROW && this.y === NODE_START_COL;
         this.isEnd = this.x === NODE_END_ROW && this.y ===NODE_END_COL;
+        this.isWall = false;
         this.g = 0;
         this.f = 0;
         this.h = 0;
@@ -84,15 +86,16 @@ const Pathfind = () => {
         };
     }
 
+
 //GRID WITH NODE
     const gridWithNode = (
         <div>
             {Grid.map((row, rowIndex) => {
                 return (
-                    <div key={rowIndex} className='rowWrapper'>
+                    <div key={rowIndex} className='rowWrapper' >
                         {row.map((col,colIndex) => {
-                            const { isStart, isEnd } = col;
-                            return <Node key= {colIndex} isStart= {isStart} isEnd = {isEnd} row={rowIndex} col={colIndex} />;
+                            const { isStart, isEnd, isWall} = col;
+                            return <Node key= {colIndex} isStart= {isStart} isEnd = {isEnd} isWall={isWall} row={rowIndex} col={colIndex} />;
                         })}
                     </div>
                 );
@@ -100,7 +103,8 @@ const Pathfind = () => {
         </div>
     );    
 
-
+    
+   
     const visualiseShortestPath = (shortestPathNodes) => {
         for (let i = 0; i < shortestPathNodes.length; i++){
             setTimeout(() => {
