@@ -10,12 +10,20 @@ export default class Node extends Component {
             isStart,
             isWall,
             row,
+            onMouseDown,
+            onMouseEnter,
+            onMouseUp,
         } = this.props;
 
         const classes = isStart ? 'nodestart' : isEnd ? 'nodeend' : isWall? "wall": "";
 
         return (
-            <td className={`node ${classes}`} id={`node-${row}-${col}`}></td>
+            <td 
+            className={`node ${classes}`} 
+            id={`node-${row}-${col}`}
+            onMouseDown={() => onMouseDown(row, col)}
+            onMouseEnter={() => onMouseEnter(row, col)}
+            onMouseUp={() => onMouseUp()}></td>
         )
     }
 
