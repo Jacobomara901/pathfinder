@@ -7,11 +7,11 @@ function Astar(startNode, endNode){
     openSet.push(startNode);
     while (openSet.length > 0) {
         let leastIndex = 0;
-        for (let i=0; i < openSet.length; i++) 
+        for (let j=0; j < openSet.length; j++) 
         {
-            if (openSet[i].f < openSet[leastIndex].f) 
+            if (openSet[j].f < openSet[leastIndex].f) 
             {
-                leastIndex = i;
+                leastIndex = j;
             }
         }
 
@@ -34,10 +34,10 @@ function Astar(startNode, endNode){
         closedSet.push(current);
 
         let neighbours = current.neighbours;
-        for(let i = 0; i < neighbours.length; i++)
+        for(let j = 0; j < neighbours.length; j++)
         {
-            let neighbour = neighbours[i];
-            if (!closedSet.includes(neighbour)){
+            let neighbour = neighbours[j];
+            if (!closedSet.includes(neighbour) && !neighbour.isWall){
                 let tempG = current.g + 1;
                 let newPath = false;
                 if(openSet.includes(neighbour)){
@@ -63,8 +63,13 @@ function Astar(startNode, endNode){
     return {path, visitedNodes, error:"No Path Found!"}
 }
 
+// function heuristic(a,b) {
+//     let d = Math.abs(a.col - a.row) + Math.abs(b.col - b.row);
+//     return d;
+// }
+
 function heuristic(a,b) {
-    let d = Math.abs(a.x - a.y) + Math.abs(b.x - b.y);
+    let d = Math.abs(a.col - a.row) + Math.abs(b.col - b.row);
     return d;
 }
 

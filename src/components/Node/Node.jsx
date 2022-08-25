@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import React, { Component } from "react";
 import './Node.css';
 
 
-const Node = ({ isStart, isEnd, row, col, isWall }) => {
+export default class Node extends Component {
+    render() {
+        const {
+            col,
+            isEnd,
+            isStart,
+            isWall,
+            row,
+            onMouseDown,
+            onMouseEnter,
+            onMouseUp,
+        } = this.props;
 
-    function idTag() {return(`node-${row}-${col}`);}
+        const classes = isStart ? 'nodestart' : isEnd ? 'nodeend' : isWall? "wall": "";
 
-    const [wallState, setWallState] = useState({
-        objects: [{id: idTag, isWall:false},]
-    });
-
-    
-
-    function toggleWall(col){
-        let nodeCopy =[...wallState.objects];
-
-        nodeCopy[col].isWall
-            ? (nodeCopy[col].isWall = false)
-            : (nodeCopy[col].isWall = true);
-        setWallState({...wallState, objects: nodeCopy});
-        
+        return (
+            <td 
+            className={`node ${classes}`} 
+            id={`node-${row}-${col}`}
+            onMouseDown={() => onMouseDown(row, col)}
+            onMouseEnter={() => onMouseEnter(row, col)}
+            onMouseUp={() => onMouseUp()}></td>
+        )
     }
-    const classes = isStart ? 'nodestart' : isEnd ? 'nodeend' : isWall? 'wall': "";
-    
-    return <div onClick={() => toggleWall(col)} className={`node ${classes}`} id={`node-${row}-${col}`}></div>
-};
 
-export default Node;
+}
