@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Node from '../Node/Node';
 import './Pathfind.css';
-import Astar from '../../Algorithms/astar/astar'
+import Astar from '../../Algorithms/astar/astar';
+import { dijkstra, getNodesInShortestPathOrder } from "../../Algorithms/dijkstra/dijkstra";
 
 export default class Pathfind extends Component {
     constructor(){
@@ -97,6 +98,8 @@ export default class Pathfind extends Component {
             isVisited: false,
             isWall: false,
             previous: undefined,
+            distance: Infinity,
+            weight: 0,
             addneighbours: function(grid){
                
                 let j = this.y;
@@ -110,7 +113,7 @@ export default class Pathfind extends Component {
     };
 
     //set the path for aStar visualisation
-    getAstarPath = () => {
+     getAstarPath = () => {
         this.setState({isRunning:true});
         this.addNeighbours(this.state.grid);
         const startNode = this.state.grid[this.state.NODE_START_ROW][this.state.NODE_START_COL];
@@ -118,12 +121,16 @@ export default class Pathfind extends Component {
         startNode.isWall = false;
         endNode.isWall = false;
         setTimeout(() =>{
-           const path = Astar(startNode, endNode); 
-           console.log(path);
-           this.setState({
-            path: path.path,
-            visitedNodes: path.visitedNodes,
+
+          const visitedNodes = dijkstra(this.state.grid, startNode, endNode);
+          const path = getNodesInShortestPathOrder(endNode);
+          Promise.all(visitedNodes, path);
+          this.setState({
+            visitedNodes: visitedNodes,
+            path:path
             });
+          console.log(visitedNodes);
+          console.log(endNode);
         }, 100)
          
          //console.log(this.state.grid);
@@ -186,7 +193,7 @@ export default class Pathfind extends Component {
 
     //Handle Mouse Events
     handleMouseDown(row, col) {
-        console.log({row, col})
+        //console.log({row, col})
         if (!this.state.isRunning) {
           if (this.isGridClear()) {
             if (
@@ -340,7 +347,7 @@ export default class Pathfind extends Component {
         <button onClick={this.getAstarPath}> Astar</button> 
         </div>
         <table className='center' >
-            <tbody className = 'rowWrapper'>
+            <tbody className = 'rowWrapper card'>
                 {grid.map((row, rowIndx) => {
                     return(
                         <tr key={rowIndx} className='wrapper'>
